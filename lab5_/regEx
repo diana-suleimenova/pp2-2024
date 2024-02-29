@@ -1,0 +1,80 @@
+#matches a string that has an 'a' followed by zero or more 'b''s.
+
+import re
+file = open('/Users/dianasuleimenova/Desktop/row.txt', 'r')
+content = file.read()
+file.close()
+
+def text_match(str):
+    pattern = "^a(b*)$"
+    if re.search(pattern, str):
+        return "Matched"
+    else:
+        return "Not matched"
+print(text_match(content))
+
+#matches a string that has an 'a' followed by two to three 'b'.
+def text_match(str):
+    pattern = "^a{2}b$|^a{3}b$"
+    if re.search(pattern, str):
+        return "Matched"
+    else:
+        return "Not matched"
+print(text_match(content))
+
+#find sequences of lowercase letters joined with a underscore
+def text_match(str):
+    pattern = "^[a-z]+_[a-z]+$"
+    if re.search(pattern, str):
+        return "Matched"
+    else:
+        return "Not matched"
+print(text_match(content))
+
+#find the sequences of one upper case letter followed by lower case letters
+def text_match(str):
+    pattern = "^[A-Z]+[a-z]+$"
+    if re.search(pattern, str):
+        return "Matched"
+    else:
+        return "Not matched"
+print(text_match(content))
+
+#matches a string that has an 'a' followed by anything, ending in 'b'
+def text_match(str):
+    pattern = "a.*?b$"
+    if re.search(pattern, str):
+        return "Matched"
+    else:
+        return "Not matched"
+print(text_match(content))
+
+#replace all occurrences of space, comma, or dot with a colon
+x = re.sub("[ ,.]", ":", content)
+print(x)
+
+#convert snake case string to camel case string
+
+def snake_to_camel(word):
+        return ''.join(x.capitalize() or '_' for x in word.split('_'))
+
+print(snake_to_camel(content))
+
+# split a string at uppercase letters
+print(re.findall('[A-Z][^A-Z]*', content))
+
+
+# insert spaces between words starting with capital letters
+def capital_words_spaces(str1):
+  return re.sub(r"(\w)([A-Z])", r"\1 \2", str1)
+
+print(capital_words_spaces(content))
+
+#convert a given camel case string to snake case
+from re import sub
+def snake_case(s):
+    return '_'.join(
+        sub('([A-Z][a-z]+)', r' \1',
+        sub('([A-Z]+)', r' \1',
+        s.replace('-', ' '))).split()).lower()
+print(snake_case(content))
